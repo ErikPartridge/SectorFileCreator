@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5076bc2b-98eb-4581-8a05-9b77c9875189" name="Default" comment="Documentation, and creating the unzipping method">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/erikpartridge/models/Airport.java" afterPath="$PROJECT_DIR$/src/main/java/com/erikpartridge/models/Airport.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/erikpartridge/parser/Downloader.java" afterPath="$PROJECT_DIR$/src/main/java/com/erikpartridge/parser/Downloader.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/erikpartridge/models/Node.java" afterPath="$PROJECT_DIR$/src/main/java/com/erikpartridge/models/Node.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/erikpartridge/parser/Resources.java" afterPath="$PROJECT_DIR$/src/main/java/com/erikpartridge/parser/Resources.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/erikpartridge/models/Waypoint.java" afterPath="$PROJECT_DIR$/src/main/java/com/erikpartridge/models/Waypoint.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
     </list>
     <list id="fc693711-dd0d-4785-99e7-702f4c233038" name="Rejected commit: Default" comment="Documentation, and creating the unzipping method" />
     <ignored path="SectorFileCreator.iws" />
@@ -48,14 +41,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider editor-type-id="MarkdownPreviewEditor">
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.38709676" vertical-offset="0" max-vertical-offset="620">
+            <state vertical-scroll-proportion="-7.5" vertical-offset="0" max-vertical-offset="345">
               <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="627">
+              <caret line="0" column="1" selection-start-line="0" selection-start-column="1" selection-end-line="0" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -96,6 +99,7 @@
         <option value="$PROJECT_DIR$/src/main/java/com/erikpartridge/models/Waypoint.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/erikpartridge/parser/Resources.java" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -633,8 +637,16 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.38709676" vertical-offset="0" max-vertical-offset="620">
+        <state vertical-scroll-proportion="-7.5" vertical-offset="0" max-vertical-offset="345">
           <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="627">
+          <caret line="0" column="1" selection-start-line="0" selection-start-column="1" selection-end-line="0" selection-end-column="1" />
           <folding />
         </state>
       </provider>
