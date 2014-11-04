@@ -26,5 +26,7 @@ public class Resources {
      */
     public static HashMap<String, Waypoint> waypoints = new HashMap<>();
 
+    private Resources(){
+    }
 
 }

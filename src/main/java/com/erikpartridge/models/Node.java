@@ -17,15 +17,26 @@ public class Node {
         this.longitude = longitude;
     }
 
-
+    /**
+     *
+     * @return the identifier of form \d*
+     */
     public String getId() {
         return id;
     }
 
+    /**
+     *
+     * @return the latitude of the node
+     */
     public double getLatitude() {
         return latitude;
     }
 
+    /**
+     *
+     * @return the longitude of the node
+     */
     public double getLongitude() {
         return longitude;
     }

@@ -17,14 +17,26 @@ public class Waypoint {
         this.longitude = longitude;
     }
 
+    /**
+     *
+     * @return the five character identifier- eg. KRANN
+     */
     public String getId() {
         return id;
     }
 
+    /**
+     *
+     * @return the latitude of the waypoint
+     */
     public double getLatitude() {
         return latitude;
     }
 
+    /**
+     *
+     * @return the longitude of the waypoint
+     */
     public double getLongitude() {
         return longitude;
     }
