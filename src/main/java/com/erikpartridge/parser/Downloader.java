@@ -20,6 +20,7 @@ public class Downloader {
      */
     public static File getAirports(){
         File file = null;
+        //copy url to file, exit if error
         try{
             file = File.createTempFile("airports", ".xml");
             FileUtils.copyURLToFile(new URL("http://www.myfsim.com/sectorfilecreation/Airports.xml"), file);
@@ -34,7 +35,9 @@ public class Downloader {
      * @return a temporary file containing information on all US waypoints, same file as found at http://www.myfsim.com/sectorfilecreation/Waypoints.xml
      */
     public static File getWaypoints(){
+
         File file = null;
+        //Copy url to file, exit if error
         try{
             file = File.createTempFile("waypoints", ".xml");
             FileUtils.copyURLToFile(new URL("http://www.myfsim.com/sectorfilecreation/Waypoints.xml"), file);
@@ -47,6 +50,7 @@ public class Downloader {
 
     public static ArrayList<File> getOSM(ArrayList<String> states) {
         ArrayList<File> results = new ArrayList<>();
+        //@TODO thread this
         for (String state : states) {
             results.add(getOSM(state));
         }
@@ -57,8 +61,9 @@ public class Downloader {
      * @param state all lowercase name, full state name, spaces replaced by dashes
      * @return a temporary file containing unzipped osm data
      */
-    public synchronized static File getOSM(String state) {
+    public static File getOSM(String state) {
         File temp = null;
+        //Copy the file, we've seen this before
         try {
             temp = File.createTempFile(state, ".bz2");
             FileUtils.copyURLToFile(new URL("http://download.geofabrik.de/north-america/us/" + state + "-latest.osm.bz2"), temp);
@@ -67,6 +72,7 @@ public class Downloader {
             System.exit(24);
         }
 
+        //Unzip the file, copy it to a new one, delete the old one
         File file = null;
         try {
             file = File.createTempFile(state, ".xml");
