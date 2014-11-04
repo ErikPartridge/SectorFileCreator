@@ -16,47 +16,14 @@ import java.util.ArrayList;
  */
 public class Downloader {
 
-    /**
-     * @return a temporary file containing information on all US airports, same file as found at http://www.myfsim.com/sectorfilecreation/Airports.xml
-     */
-    public static File getAirports(){
-        File file = null;
-        //copy url to file, exit if error
-        try{
-            file = File.createTempFile("airports", ".xml");
-            FileUtils.copyURLToFile(new URL("http://www.myfsim.com/sectorfilecreation/Airports.xml"), file);
-        }catch(IOException e){
-            System.err.println("Failed to download the required airports data, I'm quitting now.");
-            System.exit(20);
-        }
-        return file;
-    }
 
     /**
-     * @return a temporary file containing information on all US waypoints, same file as found at http://www.myfsim.com/sectorfilecreation/Waypoints.xml
-     */
-    public static File getWaypoints(){
-
-        File file = null;
-        //Copy url to file, exit if error
-        try{
-            file = File.createTempFile("waypoints", ".xml");
-            FileUtils.copyURLToFile(new URL("http://www.myfsim.com/sectorfilecreation/Waypoints.xml"), file);
-        }catch(IOException e){
-            System.err.println("Failed to download the required waypoints data, I'm quitting now.");
-            System.exit(22);
-        }
-        return file;
-    }
-
-    /**
-     *
      * @param states the list of state names, all lowercase, full name, with spaces replaced by dashes
      * @return
      */
     public static ArrayList<File> getOSM(ArrayList<String> states) {
         ArrayList<File> results = new ArrayList<>();
-        //@TODO thread this
+        //TODO thread this
         for (String state : states) {
             results.add(getOSM(state));
         }

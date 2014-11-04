@@ -1,5 +1,6 @@
 package com.erikpartridge.parser;
 
+import com.erikpartridge.models.Node;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.JDOMException;
@@ -14,29 +15,34 @@ import java.util.List;
  */
 public class Loader {
 
-    /**
-     * Load each airport into Resources.airports
-     */
-    public static void loadSimpleAirports(){
-        File file = Downloader.getAirports();
-        //Instantiate a Document object
+
+    public static void loadNodes(File file){
         Document doc = null;
+
         try {
             doc = new SAXBuilder().build(file);
         } catch (JDOMException e) {
-            System.err.println("Got a JDOMException trying to load airports, exiting...");
-            System.exit(30);
+            System.err.println("Got a JDOMException trying to load nodes, exiting...");
+            System.exit(42);
         } catch (IOException e) {
-            System.err.println("IOException trying to load airports, exiting...");
-            System.exit(32);
+            System.err.println("IOException trying to load nodes, exiting...");
+            System.exit(44);
         }
-        //Get the root so we can process
+
         Element root = doc.getRootElement();
-
-        System.out.println("I'm using AIRAC version " + root.getChild("AIRAC").getContent() + " for the airports");
-
-        List<Element> airports = root.getChildren("Airport");
+        List<Element> nodeElements = root.getChildren("node");
+        //TODO thread this
+        for(Element e : nodeElements){
+            loadPutNode(e);
+        }
     }
 
+    protected static void loadPutNode(Element element){
+        String id = element.getAttributeValue("id");
+        double latitude = Double.parseDouble(element.getAttributeValue("lat"));
+        double longitude = Double.parseDouble(element.getAttributeValue("lon"));
+        Node node = new Node(id, latitude, longitude);
+        Resources.nodes.put(id,node);
+    }
 
 }
