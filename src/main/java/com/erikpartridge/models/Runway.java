@@ -19,14 +19,26 @@ public class Runway {
         this.nodes = nodes;
     }
 
+    /**
+     *
+     * @return the identifier- eg. 04L/22R could also be 4L/22R
+     */
     public String getId() {
         return id;
     }
 
+    /**
+     *
+     * @return the width of the taxiway
+     */
     public double getWidth() {
         return width;
     }
 
+    /**
+     *
+     * @return the nodes -- the points that run down the center of the runway
+     */
     public ArrayList<Node> getNodes() {
         return nodes;
     }

@@ -14,6 +14,10 @@ public class Building {
     }
 
 
+    /**
+     *
+     * @return the boundaries of the building
+     */
     public ArrayList<Node> getBoundaries() {
         return boundaries;
     }
