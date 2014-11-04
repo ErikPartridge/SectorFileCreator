@@ -2,6 +2,7 @@ package com.erikpartridge.parser;
 
 import com.erikpartridge.models.Airport;
 import com.erikpartridge.models.Node;
+import com.erikpartridge.models.SimpleAirport;
 import com.erikpartridge.models.Waypoint;
 
 import java.util.HashMap;
@@ -17,7 +18,7 @@ public class Resources {
     public static HashMap<String, Node> nodes = new HashMap<>();
 
     /**
-     * List of all Airports, loaded from myfsim.com
+     * List of all Airports loaded from OSM
      */
     public static HashMap<String, Airport> airports = new HashMap<>();
 
@@ -25,6 +26,11 @@ public class Resources {
      * List of all Waypoints, loaded from myfsim.com
      */
     public static HashMap<String, Waypoint> waypoints = new HashMap<>();
+
+    /**
+     * List of all the Simple Airports loaded from myfsim.com
+     */
+    public static HashMap<String, SimpleAirport> simpleAirports = new HashMap<>();
 
     private Resources(){
     }
