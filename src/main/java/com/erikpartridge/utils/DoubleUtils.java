@@ -5,31 +5,46 @@ package com.erikpartridge.utils;
  */
 public class DoubleUtils {
 
-    public static String latToString(double latitude){
-        String result = "";
-        if(latitude < 0.0){
-            result =  "S" + Math.abs(latitude);
+
+    protected static String latLonToString(boolean longitude, double input){
+        int deg = (int)input; // truncate to get the degrees part
+        double fraction = Math.abs(input - deg); //the decimal part 0 < x < 1
+        int min = (int)(fraction * 60);
+        double seconds = (fraction * 3600 - min * 60);
+        String numerical = Math.abs(deg) + ". " + min + "." + seconds;
+        //What are the first two characters?
+        if(deg < 0){
+            if(longitude){
+                numerical = "W" + numerical;
+                if(deg < 100){
+                    numerical = numerical.substring(0,1) + "0" + numerical.substring(1);
+                }
+            }else{
+                numerical = "S" + numerical;
+            }
+            if(deg < 100){
+                numerical = numerical.substring(0,1) + "0" + numerical.substring(1);
+            }
         }else{
-            result = "N" + Math.abs(latitude);
+            if(longitude){
+                numerical = "E" + numerical;
+                if(deg < 100){
+                    numerical = numerical.substring(0,1) + "0" + numerical.substring(1);
+                }
+            }else{
+                numerical = "N" + numerical;
+                if(deg < 100){
+                    numerical = numerical.substring(0,1) + "0" + numerical.substring(1);
+                }
+            }
         }
-        if(!(latitude < -99.999999 || latitude > 99.99999)){
-            result = result.substring(0,1) + 0 + result.substring(1);
-        }
-        return result;
+
+        return numerical;
     }
 
-    public static String lonToString(double longitude){
-        String result = "";
-        if(longitude < 0.0){
-            result =  "W" + Math.abs(longitude);
-        }else{
-            result = "E" + Math.abs(longitude);
-        }
-        if(!(longitude < -99.999999 || longitude > 99.99999)){
-            result = result.substring(0,1) + 0 + result.substring(1);
-        }
-        return result;
+    public static String vrcString(double latitude, double longitude){
+        return latLonToString(false, latitude) + " " + latLonToString(true, longitude);
     }
 
-    
+
 }

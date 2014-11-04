@@ -5,27 +5,42 @@ package com.erikpartridge.models;
  */
 public class SimpleRunway {
 
-    private String id;
+    private final String id;
 
-    private double latitude;
+    private final double startLatitude;
 
-    private double longitude;
+    private final double startLongitude;
 
-    public SimpleRunway(String id, double latitude, double longitude) {
+    private final double endLatitude;
+
+    private final double endLongitude;
+
+
+    public String getId() {
+        return id;
+    }
+
+    public double getStartLatitude() {
+        return startLatitude;
+    }
+
+    public double getStartLongitude() {
+        return startLongitude;
+    }
+
+    public double getEndLatitude() {
+        return endLatitude;
+    }
+
+    public double getEndLongitude() {
+        return endLongitude;
+    }
+
+    public SimpleRunway(String id, double startLatitude, double startLongitude, double endLatitude, double endLongitude) {
         this.id = id;
-        this.latitude = latitude;
-        this.longitude = longitude;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public void setLatitude(double latitude) {
-        this.latitude = latitude;
-    }
-
-    public void setLongitude(double longitude) {
-        this.longitude = longitude;
+        this.startLatitude = startLatitude;
+        this.startLongitude = startLongitude;
+        this.endLatitude = endLatitude;
+        this.endLongitude = endLongitude;
     }
 }
