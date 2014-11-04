@@ -11,7 +11,7 @@ import java.net.URL;
 import java.util.ArrayList;
 
 /**
- * Created by Erik in 11, 2014.
+ * Created by Erik Partridge in November, 2014.
  */
 public class Downloader {
 
@@ -48,6 +48,11 @@ public class Downloader {
         return file;
     }
 
+    /**
+     *
+     * @param states the list of state names, all lowercase, full name, with spaces replaced by dashes
+     * @return
+     */
     public static ArrayList<File> getOSM(ArrayList<String> states) {
         ArrayList<File> results = new ArrayList<>();
         //@TODO thread this

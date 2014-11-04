@@ -7,7 +7,7 @@ import com.erikpartridge.models.Waypoint;
 import java.util.HashMap;
 
 /**
- * Created by Erik in 11, 2014.
+ * Created by Erik in November, 2014.
  */
 public class Resources {
 
