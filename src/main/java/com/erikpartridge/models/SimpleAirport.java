@@ -12,15 +12,20 @@ public class SimpleAirport {
 
     private final double longitude;
 
-    public SimpleAirport(String id, double latitude, double longitude) {
+    private final String frequency;
+
+    public SimpleAirport(String id, double latitude, double longitude, String frequency) {
         this.id = id;
         this.latitude = latitude;
         this.longitude = longitude;
+        this.frequency = frequency;
     }
+
+
 
     /**
      *
-     * @return the identifier suchas MA09
+     * @return the identifier such as MA09
      */
     public String getId() {
         return id;
@@ -40,5 +45,13 @@ public class SimpleAirport {
      */
     public double getLongitude() {
         return longitude;
+    }
+
+    /**
+     *
+     * @return the frequency of the airport. Likely to be 0.0
+     */
+    public String getFrequency() {
+        return frequency;
     }
 }
