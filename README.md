@@ -15,4 +15,4 @@ This definitely requires a good internet connection.
 
 ##Unit Testing
 
-Unit test everything- debugging takes forever with 300MB kind of files.
+It's a good thing to unit test- if you're willing to volunteer that' be good. It's not my strong suit.
