@@ -1,5 +1,6 @@
 package com.erikpartridge.parser;
 
+import com.erikpartridge.models.Building;
 import com.erikpartridge.models.Node;
 import com.erikpartridge.models.Tag;
 import com.erikpartridge.models.Way;
@@ -11,6 +12,8 @@ import org.jdom2.input.SAXBuilder;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -87,9 +90,57 @@ public class Loader {
             for(Element element: tagRefs){
                 tags.add(new Tag(element.getAttributeValue("k"), element.getAttributeValue("v")));
             }
-            Way way = new Way(nodes, tags);
+            Way way = new Way(e.getAttributeValue("id"), nodes, tags);
             Resources.ways.put(e.getAttributeValue("id"), way);
         }
+    }
+
+    public static void loadBuildings(){
+        Collection<Way> collection = Resources.ways.values();
+        List<Way> list = Arrays.asList(collection.toArray(new Way[collection.size()]));
+        List<Way> buildings = filterBuildings(list);
+        for(Way way: buildings){
+            Resources.buildings.put(way.getId(), Building.fromWay(way));
+        }
+    }
+
+    private static List<Way> filterAeroways(List<Way> list){
+        List<Way> results = new ArrayList<>();
+        for(Way w : list){
+            if(containsAerowayTag(w.getTags())){
+                results.add(w);
+            }
+        }
+        return results;
+    }
+
+    private static boolean containsAerowayTag(List<Tag> tags){
+        for(Tag tag: tags){
+            if(tag.getK().equals("aeroway")){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static boolean isBuidling(List<Tag> tags){
+        for(Tag tag: tags){
+            if(tag.getK().equals("building")){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static List<Way> filterBuildings(List<Way> list){
+        List<Way> aeroways = filterAeroways(list);
+        ArrayList<Way> results = new ArrayList<>();
+        for(Way way: aeroways){
+            if(isBuidling(way.getTags())){
+                results.add(way);
+            }
+        }
+        return results;
     }
 
 }

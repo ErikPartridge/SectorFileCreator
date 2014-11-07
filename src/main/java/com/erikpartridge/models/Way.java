@@ -11,7 +11,9 @@ public class Way {
 
     private ArrayList<Tag> tags;
 
-    public Way(ArrayList<Node> nodes, ArrayList<Tag> tags) {
+    private String id;
+
+    public Way(String id, ArrayList<Node> nodes, ArrayList<Tag> tags) {
         this.setNodes(nodes);
         this.setTags(tags);
     }
@@ -35,5 +37,14 @@ public class Way {
 
     public void setTags(ArrayList<Tag> tags) {
         this.tags = tags;
+    }
+
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

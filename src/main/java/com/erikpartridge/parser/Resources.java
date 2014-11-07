@@ -1,6 +1,7 @@
 package com.erikpartridge.parser;
 
 import com.erikpartridge.models.Airport;
+import com.erikpartridge.models.Building;
 import com.erikpartridge.models.Node;
 import com.erikpartridge.models.Way;
 
@@ -21,6 +22,7 @@ public final class Resources {
      */
     public static HashMap<String, Way> ways = new HashMap<>();
 
+    public static HashMap<String, Building> buildings = new HashMap<>();
 
     /**
      * List of all Airports loaded from OSM

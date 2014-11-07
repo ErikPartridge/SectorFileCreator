@@ -4,7 +4,9 @@ import java.util.ArrayList;
 
 /**
  * Created by Erik in 11, 2014.
+ * Not used until further notice, don't see a point
  */
+@Deprecated
 public class Relation {
 
     private ArrayList<Way> members;

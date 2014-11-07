@@ -5,20 +5,17 @@ import java.util.ArrayList;
 /**
  * Created by Erik in 11, 2014.
  */
-public class Building {
+public class Building extends Way{
 
-    private final ArrayList<Node> boundaries;
-
-    public Building(ArrayList<Node> boundaries) {
-        this.boundaries = boundaries;
+    public Building(){
+        super();
     }
 
+    public Building(String id, ArrayList<Node> nodes, ArrayList<Tag> tags){
+        super(id, nodes,tags);
+    }
 
-    /**
-     *
-     * @return the boundaries of the building
-     */
-    public ArrayList<Node> getBoundaries() {
-        return boundaries;
+    public static Building fromWay(Way w){
+        return new Building(w.getId(), w.getNodes(), w.getTags());
     }
 }
