@@ -19,8 +19,14 @@ public final class Resources {
      */
     public static HashMap<String, Way> ways = new HashMap<>();
 
+    /**
+     * List of all buildings, derived from ways
+     */
     public static HashMap<String, Building> buildings = new HashMap<>();
 
+    /**
+     *List of all coastlines, also derived from ways
+     */
     public static HashMap<String, Coastline> coastline = new HashMap<>();
 
     /**

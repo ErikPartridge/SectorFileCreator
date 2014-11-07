@@ -33,4 +33,6 @@ public class Building extends Way{
     public static Building fromWay(Way w){
         return new Building(w.getId(), w.getNodes(), w.getTags());
     }
+
+
 }

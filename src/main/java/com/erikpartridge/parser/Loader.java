@@ -9,8 +9,6 @@ import org.jdom2.input.SAXBuilder;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 
 /**
@@ -18,6 +16,12 @@ import java.util.List;
  */
 public class Loader {
 
+
+    public static void loadAll(ArrayList<File> files){
+        for(File f : files){
+            loadNodes(f);
+        }
+    }
 
     /**
      * @param file the file from which to derive the nodes
@@ -58,7 +62,7 @@ public class Loader {
      *
      * @param file from a given file, get all the ways
      */
-    public static void loadWays(File file){
+    public static ArrayList<Way> loadWays(File file){
         Document doc = null;
 
         try {
@@ -70,7 +74,7 @@ public class Loader {
             System.err.println("IOException trying to load ways, exiting...");
             System.exit(48);
         }
-
+        ArrayList<Way> results = new ArrayList<>();
         Element root = doc.getRootElement();
         List<Element> wayElements = root.getChildren("way");
         //TODO thread this
@@ -88,16 +92,15 @@ public class Loader {
                 tags.add(new Tag(element.getAttributeValue("k"), element.getAttributeValue("v")));
             }
             Way way = new Way(e.getAttributeValue("id"), nodes, tags);
-            Resources.ways.put(e.getAttributeValue("id"), way);
+            results.add(way);
         }
+        return results;
     }
 
     /**
      * Load buildings from Resources.ways.values
      */
-    public static void loadBuildings(){
-        Collection<Way> collection = Resources.ways.values();
-        List<Way> list = Arrays.asList(collection.toArray(new Way[collection.size()]));
+    public static void loadBuildings(ArrayList<Way> list){
         List<Way> buildings = filterBuildings(list);
         for(Way way: buildings){
             Resources.buildings.put(way.getId(), Building.fromWay(way));
@@ -166,9 +169,7 @@ public class Loader {
     /**
      * Load the coastline, ways have to be pre-loaded
      */
-    public static void loadCoastline(){
-        Collection<Way> collection = Resources.ways.values();
-        List<Way> coast = Arrays.asList(collection.toArray(new Way[collection.size()]));
+    public static void loadCoastline(ArrayList<Way> coast){
         for(Way way : coast){
             if(isCoast(way.getTags())){
                 Resources.coastline.put(way.getId(), Coastline.coastlineFromWay(way));

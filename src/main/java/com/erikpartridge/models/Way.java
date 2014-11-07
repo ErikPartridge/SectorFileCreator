@@ -72,4 +72,34 @@ public class Way {
         this.id = id;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Way)) return false;
+
+        Way way = (Way) o;
+
+        if (!id.equals(way.id)) return false;
+        if (!nodes.equals(way.nodes)) return false;
+        if (!tags.equals(way.tags)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = nodes.hashCode();
+        result = 31 * result + tags.hashCode();
+        result = 31 * result + id.hashCode();
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Way{" +
+                "nodes=" + nodes +
+                ", tags=" + tags +
+                ", id='" + id + '\'' +
+                '}';
+    }
 }
