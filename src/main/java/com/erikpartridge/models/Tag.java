@@ -3,7 +3,7 @@ package com.erikpartridge.models;
 /**
  * Created by Erik in 11, 2014.
  */
-public class Tag {
+public final class Tag {
 
     private final String k;
     private final String v;

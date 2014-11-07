@@ -1,9 +1,6 @@
 package com.erikpartridge.parser;
 
-import com.erikpartridge.models.Building;
-import com.erikpartridge.models.Node;
-import com.erikpartridge.models.Tag;
-import com.erikpartridge.models.Way;
+import com.erikpartridge.models.*;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.JDOMException;
@@ -165,5 +162,49 @@ public class Loader {
         }
         return results;
     }
+
+    /**
+     * Load the coastline, ways have to be pre-loaded
+     */
+    public static void loadCoastline(){
+        Collection<Way> collection = Resources.ways.values();
+        List<Way> coast = Arrays.asList(collection.toArray(new Way[collection.size()]));
+        for(Way way : coast){
+            if(isCoast(way.getTags())){
+                Resources.coastline.put(way.getId(), Coastline.coastlineFromWay(way));
+            }
+
+        }
+    }
+
+    /**
+     *
+     * @param tags a list of tags belonging to a node
+     * @return if any of the tags' V value is coastline
+     */
+    private static boolean isCoast(List<Tag> tags){
+        for(Tag tag: tags){
+            if(tag.getV().equals("coastline")){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     *
+     * @param list the list of ways to filter
+     * @return a list of only ways tagged "coastline"
+     */
+    private static List<Way> filterCoastline(List<Way> list){
+        ArrayList<Way> results = new ArrayList<>();
+        for(Way way: list){
+            if(isCoast(way.getTags())){
+                results.add(way);
+            }
+        }
+        return results;
+    }
+
 
 }

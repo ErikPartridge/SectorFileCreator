@@ -3,7 +3,7 @@ package com.erikpartridge.models;
 /**
  * Created by Erik in November, 2014.
  */
-public class Waypoint {
+public final class Waypoint {
 
     private final String id;
 
