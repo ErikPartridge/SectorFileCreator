@@ -1,6 +1,8 @@
 package com.erikpartridge.parser;
 
 import com.erikpartridge.models.Node;
+import com.erikpartridge.models.Tag;
+import com.erikpartridge.models.Way;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.JDOMException;
@@ -8,6 +10,7 @@ import org.jdom2.input.SAXBuilder;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -51,6 +54,10 @@ public class Loader {
         Resources.nodes.put(id,node);
     }
 
+    /**
+     *
+     * @param file from a given file, get all the ways
+     */
     public static void loadWays(File file){
         Document doc = null;
 
@@ -67,7 +74,22 @@ public class Loader {
         Element root = doc.getRootElement();
         List<Element> wayElements = root.getChildren("way");
         //TODO thread this
-
+        for(Element e : wayElements){
+            List<Element> refs = e.getChildren("nd");
+            ArrayList<Node> nodes = new ArrayList<>();
+            //Get the node refs
+            for(Element element : refs){
+                nodes.add(Resources.nodes.get(element.getAttributeValue("ref")));
+            }
+            List<Element> tagRefs = e.getChildren("tag");
+            ArrayList<Tag> tags = new ArrayList<>();
+            // Get the tags
+            for(Element element: tagRefs){
+                tags.add(new Tag(element.getAttributeValue("k"), element.getAttributeValue("v")));
+            }
+            Way way = new Way(nodes, tags);
+            Resources.ways.put(e.getAttributeValue("id"), way);
+        }
     }
 
 }
