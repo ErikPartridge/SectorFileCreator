@@ -16,6 +16,9 @@ import java.util.List;
 public class Loader {
 
 
+    /**
+     * @param file the file from which to derive the nodes
+     */
     public static void loadNodes(File file){
         Document doc = null;
 
@@ -37,12 +40,34 @@ public class Loader {
         }
     }
 
+    /**
+     * @param element
+     */
     protected static void loadPutNode(Element element){
         String id = element.getAttributeValue("id");
         double latitude = Double.parseDouble(element.getAttributeValue("lat"));
         double longitude = Double.parseDouble(element.getAttributeValue("lon"));
         Node node = new Node(id, latitude, longitude);
         Resources.nodes.put(id,node);
+    }
+
+    public static void loadWays(File file){
+        Document doc = null;
+
+        try {
+            doc = new SAXBuilder().build(file);
+        } catch (JDOMException e) {
+            System.err.println("Got a JDOMException trying to load ways, exiting...");
+            System.exit(46);
+        } catch (IOException e) {
+            System.err.println("IOException trying to load ways, exiting...");
+            System.exit(48);
+        }
+
+        Element root = doc.getRootElement();
+        List<Element> wayElements = root.getChildren("way");
+        //TODO thread this
+
     }
 
 }
