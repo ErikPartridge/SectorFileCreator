@@ -47,7 +47,7 @@ public class Loader {
     }
 
     /**
-     * @param element
+     * @param element from a <node> element create a node and put it in the Resources.node map
      */
     protected static void loadPutNode(Element element){
         String id = element.getAttributeValue("id");
@@ -95,6 +95,9 @@ public class Loader {
         }
     }
 
+    /**
+     * Load buildings from Resources.ways.values
+     */
     public static void loadBuildings(){
         Collection<Way> collection = Resources.ways.values();
         List<Way> list = Arrays.asList(collection.toArray(new Way[collection.size()]));
@@ -104,6 +107,11 @@ public class Loader {
         }
     }
 
+    /**
+     *
+     * @param list the list of ways to filter
+     * @return a list containing only those tagged Aeroways
+     */
     private static List<Way> filterAeroways(List<Way> list){
         List<Way> results = new ArrayList<>();
         for(Way w : list){
@@ -114,6 +122,11 @@ public class Loader {
         return results;
     }
 
+    /**
+     *
+     * @param tags a list of tags belonging to a node
+     * @return if any of the tags' K value is aeroway
+     */
     private static boolean containsAerowayTag(List<Tag> tags){
         for(Tag tag: tags){
             if(tag.getK().equals("aeroway")){
@@ -123,7 +136,12 @@ public class Loader {
         return false;
     }
 
-    private static boolean isBuidling(List<Tag> tags){
+    /**
+     *
+     * @param tags a list of tags belonging to a node
+     * @return if any of the tags' K value is building
+     */
+    private static boolean isBuilding(List<Tag> tags){
         for(Tag tag: tags){
             if(tag.getK().equals("building")){
                 return true;
@@ -132,11 +150,16 @@ public class Loader {
         return false;
     }
 
+    /**
+     *
+     * @param list the list of ways to filter
+     * @return a list of only ways tagged "building"
+     */
     private static List<Way> filterBuildings(List<Way> list){
         List<Way> aeroways = filterAeroways(list);
         ArrayList<Way> results = new ArrayList<>();
         for(Way way: aeroways){
-            if(isBuidling(way.getTags())){
+            if(isBuilding(way.getTags())){
                 results.add(way);
             }
         }

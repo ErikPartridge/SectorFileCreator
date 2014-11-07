@@ -5,28 +5,29 @@ package com.erikpartridge.models;
  */
 public class Tag {
 
-    private String k;
+    private final String k;
+    private final String v;
 
-    private String v;
-
+    /**
+     *
+     * @param k the k attribute
+     * @param v the v attribute
+     */
     public Tag(String k, String v) {
         this.k = k;
         this.v = v;
     }
 
+    /**
+     *
+     * @return the k value
+     */
     public String getK() {
         return k;
     }
 
-    public void setK(String k) {
-        this.k = k;
-    }
 
     public String getV() {
         return v;
-    }
-
-    public void setV(String v) {
-        this.v = v;
     }
 }
