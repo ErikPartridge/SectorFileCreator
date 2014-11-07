@@ -47,7 +47,7 @@ public class Loader {
     }
 
     /**
-     * @param element from a <node> element create a node and put it in the Resources.node map
+     * @param element from a node element create a node and put it in the Resources.node map
      */
     protected static void loadPutNode(Element element){
         String id = element.getAttributeValue("id");

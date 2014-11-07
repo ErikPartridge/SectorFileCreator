@@ -19,7 +19,7 @@ public class Downloader {
 
     /**
      * @param states the list of state names, all lowercase, full name, with spaces replaced by dashes
-     * @return
+     * @return an OSM file for each state
      */
     public static ArrayList<File> getOSM(ArrayList<String> states) {
         ArrayList<File> results = new ArrayList<>();
