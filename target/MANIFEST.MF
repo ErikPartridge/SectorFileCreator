@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Build-Jdk: 1.8.0-ea
+Build-Jdk: 1.8.0_25
 Built-By: Erik
 Created-By: IntelliJ IDEA
 

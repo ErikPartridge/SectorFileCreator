@@ -20,6 +20,12 @@ public class Loader {
     public static void loadAll(ArrayList<File> files){
         for(File f : files){
             loadNodes(f);
+            ArrayList<Way> ways = loadWays(f);
+            loadBuildings(ways);
+            loadCoastline(ways);
+            for(Way way: filterAeroways(ways)){
+                Resources.ways.put(way.getId(), way);
+            }
         }
     }
 
@@ -59,7 +65,6 @@ public class Loader {
     }
 
     /**
-     *
      * @param file from a given file, get all the ways
      */
     public static ArrayList<Way> loadWays(File file){
@@ -98,10 +103,11 @@ public class Loader {
     }
 
     /**
-     * Load buildings from Resources.ways.values
+     * Load buildings
+     * @param list the list to load buildings from
      */
     public static void loadBuildings(ArrayList<Way> list){
-        List<Way> buildings = filterBuildings(list);
+        List<Way> buildings = filterBuildings(filterAeroways(list));
         for(Way way: buildings){
             Resources.buildings.put(way.getId(), Building.fromWay(way));
         }
