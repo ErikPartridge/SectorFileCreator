@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by Erik in 11, 2014.
@@ -87,15 +88,11 @@ public class Loader {
             List<Element> refs = e.getChildren("nd");
             ArrayList<Node> nodes = new ArrayList<>();
             //Get the node refs
-            for(Element element : refs){
-                nodes.add(Resources.nodes.get(element.getAttributeValue("ref")));
-            }
+            nodes.addAll(refs.stream().map(element -> Resources.nodes.get(element.getAttributeValue("ref"))).collect(Collectors.toList()));
             List<Element> tagRefs = e.getChildren("tag");
             ArrayList<Tag> tags = new ArrayList<>();
             // Get the tags
-            for(Element element: tagRefs){
-                tags.add(new Tag(element.getAttributeValue("k"), element.getAttributeValue("v")));
-            }
+            tags.addAll(tagRefs.stream().map(element -> new Tag(element.getAttributeValue("k"), element.getAttributeValue("v"))).collect(Collectors.toList()));
             Way way = new Way(e.getAttributeValue("id"), nodes, tags);
             results.add(way);
         }
@@ -111,6 +108,7 @@ public class Loader {
         for(Way way: buildings){
             Resources.buildings.put(way.getId(), Building.fromWay(way));
         }
+        //TOdo
     }
 
     /**
@@ -119,13 +117,7 @@ public class Loader {
      * @return a list containing only those tagged Aeroways
      */
     private static List<Way> filterAeroways(List<Way> list){
-        List<Way> results = new ArrayList<>();
-        for(Way w : list){
-            if(containsAerowayTag(w.getTags())){
-                results.add(w);
-            }
-        }
-        return results;
+        return list.stream().filter(w -> containsAerowayTag(w.getTags())).collect(Collectors.toList());
     }
 
     /**
@@ -176,12 +168,7 @@ public class Loader {
      * Load the coastline, ways have to be pre-loaded
      */
     public static void loadCoastline(ArrayList<Way> coast){
-        for(Way way : coast){
-            if(isCoast(way.getTags())){
-                Resources.coastline.put(way.getId(), Coastline.coastlineFromWay(way));
-            }
-
-        }
+        coast.stream().filter(way -> isCoast(way.getTags())).forEach(way -> Resources.coastline.put(way.getId(), Coastline.coastlineFromWay(way)));
     }
 
     /**

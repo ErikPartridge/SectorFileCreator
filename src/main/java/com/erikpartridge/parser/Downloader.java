@@ -10,6 +10,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.concurrent.ForkJoinPool;
 
 /**
  * Created by Erik Partridge in November, 2014.
@@ -23,10 +24,7 @@ public class Downloader {
      */
     public static ArrayList<File> getOSM(ArrayList<String> states) {
         ArrayList<File> results = new ArrayList<>();
-        //TODO thread this
-        for (String state : states) {
-            results.add(getOSM(state));
-        }
+        states.parallelStream().forEach(state -> results.add(getOSM(state)));
         return results;
     }
 
@@ -50,7 +48,7 @@ public class Downloader {
         //Unzip the file, copy it to a new one, delete the old one
         File file = null;
         try {
-            file = File.createTempFile(state, ".xml");
+            file = File.createTempFile(state, ".osm");
             FileOutputStream out = new FileOutputStream(file);
             BZip2CompressorInputStream zipstream = new BZip2CompressorInputStream(new FileInputStream(temp), true);
             IOUtils.copy(zipstream, out);

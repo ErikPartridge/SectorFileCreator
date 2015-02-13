@@ -25,6 +25,8 @@ public class WebParser {
         }catch (IOException e){
             System.out.println("Whoops, failed to update the FAA data from myfsim.com");
         }
+        
+        
     }
 
 

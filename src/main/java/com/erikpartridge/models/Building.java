@@ -34,5 +34,11 @@ public class Building extends Way{
         return new Building(w.getId(), w.getNodes(), w.getTags());
     }
 
+    
+    @Override
+    public String toString(){
+        //TODO
+    }
+    
 
 }

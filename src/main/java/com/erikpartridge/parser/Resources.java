@@ -34,6 +34,9 @@ public final class Resources {
      */
     public static HashMap<String, Airport> airports = new HashMap<>();
 
+    /**
+     * 
+     */
     private Resources(){
     }
 
