@@ -38,6 +38,7 @@ public class Building extends Way{
     @Override
     public String toString(){
         //TODO
+        return "";
     }
     
 
